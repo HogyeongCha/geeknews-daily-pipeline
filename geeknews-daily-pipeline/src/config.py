@@ -10,7 +10,7 @@ except ImportError:
 @dataclass
 class Config:
     slack_webhook_url: str
-    obsidian_vault_path: str
+    obsidian_vault_path: str = ""
     geeknews_url: str = "https://news.hada.io/new"
     github_token: str = ""
     github_model: str = "openai/gpt-4o-mini"
@@ -29,8 +29,6 @@ def load_config() -> Config:
     missing = []
     if not slack_webhook_url:
         missing.append("SLACK_WEBHOOK_URL")
-    if not obsidian_vault_path:
-        missing.append("OBSIDIAN_VAULT_PATH")
 
     if missing:
         raise ValueError(f"Missing required environment variables: {', '.join(missing)}")

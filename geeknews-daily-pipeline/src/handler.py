@@ -1,4 +1,5 @@
 import logging
+import os
 from datetime import datetime, timezone, timedelta
 
 from src.config import load_config
@@ -36,8 +37,18 @@ def handler(event: dict, context) -> dict:
         today = datetime.now(kst).strftime("%Y-%m-%d")
         filename, content = generate_markdown(articles, today)
 
-        # 5. Save to Obsidian Vault
-        saved_path = save_to_vault(config.obsidian_vault_path, filename, content)
+        # 5. Save markdown
+        saved_path = None
+        if config.obsidian_vault_path:
+            # Local mode: save to Obsidian Vault
+            saved_path = save_to_vault(config.obsidian_vault_path, filename, content)
+        else:
+            # CI mode: save to output/ directory (for GitHub Actions commit)
+            output_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "output")
+            os.makedirs(output_dir, exist_ok=True)
+            saved_path = os.path.join(output_dir, filename)
+            with open(saved_path, "w", encoding="utf-8") as f:
+                f.write(content)
 
         # 6. Send Slack notification
         notify(config.slack_webhook_url, articles)
