@@ -1,0 +1,28 @@
+# Environment
+.env
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+
+# Testing
+.hypothesis/
+.pytest_cache/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+__MACOSX/
+.kiro/agents/__MACOSX/
+.kiro/prompts/__MACOSX/
+
+# Lambda package
+*.zip

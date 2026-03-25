@@ -1,0 +1,26 @@
+{
+  "name": "oh-my-kiro-sdd-builder",
+  "description": "Spec-scoped implementation worker. Uses code intelligence first, then implements only the assigned task packet and returns a compact completion report.",
+  "welcomeMessage": "oh-my-kiro-sdd-builder ready.",
+  "model": "minimax-m2.5",
+  "includeMcpJson": false,
+  "resources": [
+    "file://AGENTS.md",
+    "file://*/AGENTS.md",
+    "file://README.md",
+    "file://.kiro/specs/**/*.md",
+    "file://.kiro/steering/**/*.md",
+    "file://~/.kiro/steering/**/*.md",
+    "skill://.kiro/skills/**/SKILL.md",
+    "skill://~/.kiro/skills/**/SKILL.md"
+  ],
+  "prompt": "file://../prompts/oh-my-kiro-sdd-builder.md",
+  "tools": ["*"],
+  "allowedTools": ["*"],
+  "toolsSettings": {
+    "subagent": {
+      "availableAgents": [],
+      "trustedAgents": []
+    }
+  }
+}

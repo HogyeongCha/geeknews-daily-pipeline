@@ -1,0 +1,26 @@
+{
+  "name": "oh-my-kiro-sdd-reviewer",
+  "description": "Spec-scoped review worker. Reviews assigned code changes for correctness, spec conformance, regression risk, and scope discipline with a compact verdict.",
+  "welcomeMessage": "oh-my-kiro-sdd-reviewer ready.",
+  "model": "claude-sonnet-4.6",
+  "includeMcpJson": false,
+  "resources": [
+    "file://AGENTS.md",
+    "file://*/AGENTS.md",
+    "file://README.md",
+    "file://.kiro/specs/**/*.md",
+    "file://.kiro/steering/**/*.md",
+    "file://~/.kiro/steering/**/*.md",
+    "skill://.kiro/skills/**/SKILL.md",
+    "skill://~/.kiro/skills/**/SKILL.md"
+  ],
+  "prompt": "file://../prompts/oh-my-kiro-sdd-reviewer.md",
+  "tools": ["*"],
+  "allowedTools": ["*"],
+  "toolsSettings": {
+    "subagent": {
+      "availableAgents": [],
+      "trustedAgents": []
+    }
+  }
+}

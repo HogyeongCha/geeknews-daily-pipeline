@@ -1,0 +1,46 @@
+{
+  "name": "oh-my-kiro-sdd-master",
+  "description": "Spec-driven master orchestrator. Rebuilds tasks.md into parallel work packets, manages spec context, spawns up to 4 builders, and routes all code changes through reviewer.",
+  "welcomeMessage": " ██████╗ ██╗  ██╗    ███╗   ███╗██╗   ██╗    ██╗  ██╗██╗██████╗  ██████╗ \n██╔═══██╗██║  ██║    ████╗ ████║╚██╗ ██╔╝    ██║ ██╔╝██║██╔══██╗██╔═══██╗\n██║   ██║███████║    ██╔████╔██║ ╚████╔╝     █████╔╝ ██║██████╔╝██║   ██║\n██║   ██║██╔══██║    ██║╚██╔╝██║  ╚██╔╝      ██╔═██╗ ██║██╔══██╗██║   ██║\n╚██████╔╝██║  ██║    ██║ ╚═╝ ██║   ██║       ██║  ██╗██║██║  ██║╚██████╔╝\n ╚═════╝ ╚═╝  ╚═╝    ╚═╝     ╚═╝   ╚═╝       ╚═╝  ╚═╝╚═╝╚═╝  ╚═╝ ╚═════╝ \n                                                                         ",
+  "model": "claude-opus-4.6",
+  "includeMcpJson": true,
+  "resources": [
+    "file://AGENTS.md",
+    "file://*/AGENTS.md",
+    "file://README.md",
+    "file://.kiro/specs/**/*.md",
+    "file://.kiro/steering/**/*.md",
+    "file://~/.kiro/steering/**/*.md",
+    "skill://.kiro/skills/**/SKILL.md",
+    "skill://~/.kiro/skills/**/SKILL.md"
+  ],
+  "prompt": "file://../prompts/oh-my-kiro-sdd-master.md",
+  "tools": [
+    "read",
+    "write",
+    "shell",
+    "code",
+    "todo",
+    "introspect",
+    "use_subagent"
+  ],
+  "allowedTools": [
+    "read",
+    "write",
+    "shell",
+    "code",
+    "todo",
+    "introspect",
+    "use_subagent"
+  ],
+  "toolsSettings": {
+    "write": {
+      "allowedPaths": ["**/*"]
+    },
+    "subagent": {
+      "availableAgents": ["oh-my-kiro-sdd-builder", "oh-my-kiro-sdd-reviewer"],
+      "trustedAgents": ["oh-my-kiro-sdd-builder", "oh-my-kiro-sdd-reviewer"]
+    }
+  },
+  "hooks": {}
+}
